@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "rii+SbuCui4=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\ELHADJ BOUBACAR BAH\\Desktop\\PROJETS SI\\WpfApp1\\WpfApp1\\WpfApp1.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ELHADJ BOUBACAR BAH\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
