@@ -15,7 +15,6 @@ namespace WpfApp1
             InitializeComponent();
         }
 
-        // 1. Bouton Parcourir
         private void BtnBrowse_Click(object sender, RoutedEventArgs e)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog
