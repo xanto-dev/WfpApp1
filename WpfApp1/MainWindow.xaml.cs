@@ -30,10 +30,9 @@ namespace WpfApp1
             }
         }
 
-        // 2. Bouton Générer (Asynchrone)
         private async void BtnGenerate_Click(object sender, RoutedEventArgs e)
         {
-            // Validation des entrées
+            
             if (!int.TryParse(TxtMinLength.Text, out int min) || !int.TryParse(TxtMaxLength.Text, out int max) || min > max)
             {
                 MessageBox.Show("Veuillez saisir des longueurs valides (Min <= Max).", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -53,31 +52,19 @@ namespace WpfApp1
                 return;
             }
 
-            // Calcul du total pour la barre de progression
             long totalCombinations = CalculateTotal(charset.Length, min, max);
 
-            // CORRECTION IMPORTANTE : 
-            // On stocke le chemin dans une variable string locale AVANT de lancer le Task.
-            // On le fait ici car on est encore sur le thread UI.
+           
             string finalPath = TxtOutputPath.Text;
-
-            // Préparation UI
             BtnGenerate.IsEnabled = false;
             ProgressBarGen.Value = 0;
             LblPercentage.Visibility = Visibility.Visible;
             LblStatus.Text = "Génération en cours...";
-
-            // Lancement de la génération sur un thread séparé
-            // On passe 'finalPath' au lieu de 'TxtOutputPath.Text'
             await Task.Run(() => StartGeneration(charset, min, max, finalPath, totalCombinations));
-
-            // Fin
             LblStatus.Text = "Terminé !";
             BtnGenerate.IsEnabled = true;
             MessageBox.Show($"Le dictionnaire a été généré avec succès dans :\n{finalPath}", "Succès", MessageBoxButton.OK, MessageBoxImage.Information);
         }
-
-        // 3. Construction de la chaîne de caractères
         private string BuildCharset()
         {
             StringBuilder sb = new StringBuilder();
@@ -86,18 +73,17 @@ namespace WpfApp1
             if (ChkDigits.IsChecked == true) sb.Append("0123456789");
             if (ChkSpecial.IsChecked == true)
             {
-                // On utilise le préfixe @ pour faciliter l'écriture, 
-                // mais attention : pour le guillemet (") il faut le doubler ("")
+                
                 sb.Append(@"!#$%&'()*+,-./:;<=>?@[\]^_`{|}~");
-                sb.Append("\""); // Ajoute le guillemet double
+                sb.Append("\""); 
             }
-            sb.Append(TxtCharacters.Text); // Caractères personnalisés
+            sb.Append(TxtCharacters.Text); 
 
-            // On enlève les doublons au cas où
+            
             return new string(sb.ToString().Distinct().ToArray());
         }
 
-        // 4. Calcul mathématique du total : Somme de n^i
+        
         private long CalculateTotal(int n, int min, int max)
         {
             long total = 0;
@@ -108,7 +94,7 @@ namespace WpfApp1
             return total;
         }
 
-        // 5. Logique d'écriture et Récursivité
+       
         private void StartGeneration(string charset, int min, int max, string path, long total)
         {
             long count = 0;
@@ -128,7 +114,7 @@ namespace WpfApp1
                 writer.WriteLine(current);
                 count++;
 
-                // Mise à jour de la progression (tous les 1000 mots pour ne pas ralentir)
+                
                 if (count % 1000 == 0 || count == total)
                 {
                     double progress = (double)count / total * 100;

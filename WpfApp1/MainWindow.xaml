@@ -74,18 +74,7 @@
     </Window.Resources>
 
     <Grid>
-        <!-- Ellipse décorative avec moins de flou -->
-        <!--<Ellipse Fill="#E0F2FE" 
-                 Width="250" 
-                 Height="250" 
-                 HorizontalAlignment="Left" 
-                 VerticalAlignment="Top" 
-                 Margin="-80,-80,0,0" 
-                 Opacity="0.4">
-            <Ellipse.Effect>
-                <BlurEffect Radius="40"/>
-            </Ellipse.Effect>
-        </Ellipse>-->
+     
 
         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
             <Border Width="450" 
