@@ -20,3 +20,4 @@ C:\Users\ELHADJ BOUBACAR BAH\Desktop\PROJETS SI\WpfApp1\WpfApp1\obj\Debug\net8.0
 C:\Users\ELHADJ BOUBACAR BAH\Desktop\PROJETS SI\WpfApp1\WpfApp1\obj\Debug\net8.0-windows\WpfApp1.csproj.AssemblyReference.cache
 C:\Users\ELHADJ BOUBACAR BAH\Desktop\PROJETS SI\WpfApp1\WpfApp1\bin\Debug\net8.0-windows\BCrypt.Net-Next.dll
 C:\Users\ELHADJ BOUBACAR BAH\Desktop\PROJETS SI\WpfApp1\WpfApp1\obj\Debug\net8.0-windows\WpfApp1.csproj.Up2Date
+C:\Users\ELHADJ BOUBACAR BAH\Desktop\PROJETS SI\WpfApp1\WpfApp1\obj\Debug\net8.0-windows\WpfApp1.sourcelink.json

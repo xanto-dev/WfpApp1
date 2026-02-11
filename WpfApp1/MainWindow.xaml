@@ -6,7 +6,11 @@
         WindowStartupLocation="CenterScreen"
         Background="#F8FAFC"
         ResizeMode="CanMinimize"
-        FontFamily="Segoe UI Semibold">
+        FontFamily="Segoe UI"
+        TextOptions.TextFormattingMode="Display"
+        TextOptions.TextRenderingMode="ClearType"
+        UseLayoutRounding="True"
+        SnapsToDevicePixels="True">
 
     <Window.Resources>
         <LinearGradientBrush x:Key="PrimaryGradient" StartPoint="0,0" EndPoint="1,1">
@@ -19,15 +23,17 @@
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Height" Value="45"/>
             <Setter Property="Background" Value="#FFFFFF"/>
-            <Setter Property="BorderBrush" Value="#E2E8F0"/>
-            <Setter Property="BorderThickness" Value="1.5"/>
+            <Setter Property="BorderBrush" Value="#CBD5E1"/>
+            <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="TextBox">
-                        <Border x:Name="border" Background="{TemplateBinding Background}"
+                        <Border x:Name="border" 
+                                Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="10">
+                                CornerRadius="8"
+                                SnapsToDevicePixels="True">
                             <ScrollViewer x:Name="PART_ContentHost"/>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -47,7 +53,10 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="12" SnapsToDevicePixels="True">
+                        <Border x:Name="border" 
+                                Background="{TemplateBinding Background}" 
+                                CornerRadius="10" 
+                                SnapsToDevicePixels="True">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -56,11 +65,6 @@
                             </Trigger>
                             <Trigger Property="IsPressed" Value="True">
                                 <Setter TargetName="border" Property="Opacity" Value="0.8"/>
-                                <Setter Property="RenderTransform">
-                                    <Setter.Value>
-                                        <ScaleTransform ScaleX="0.98" ScaleY="0.98"/>
-                                    </Setter.Value>
-                                </Setter>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -70,23 +74,51 @@
     </Window.Resources>
 
     <Grid>
-        <Ellipse Fill="#DBEAFE" Width="300" Height="300" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-100,-100,0,0" Opacity="0.5">
+        <!-- Ellipse décorative avec moins de flou -->
+        <!--<Ellipse Fill="#E0F2FE" 
+                 Width="250" 
+                 Height="250" 
+                 HorizontalAlignment="Left" 
+                 VerticalAlignment="Top" 
+                 Margin="-80,-80,0,0" 
+                 Opacity="0.4">
             <Ellipse.Effect>
-                <BlurEffect Radius="80"/>
+                <BlurEffect Radius="40"/>
             </Ellipse.Effect>
-        </Ellipse>
+        </Ellipse>-->
 
-        <ScrollViewer VerticalScrollBarVisibility="Hidden">
-            <Border Width="450" Margin="20,30" Background="White" CornerRadius="20" Padding="30">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+            <Border Width="450" 
+                    Margin="20,30" 
+                    Background="White" 
+                    CornerRadius="16" 
+                    Padding="30"
+                    BorderBrush="#E2E8F0"
+                    BorderThickness="1">
                 <Border.Effect>
-                    <DropShadowEffect BlurRadius="30" ShadowDepth="4" Opacity="0.1" Color="#1E293B"/>
+                    <DropShadowEffect BlurRadius="20" 
+                                      ShadowDepth="2" 
+                                      Opacity="0.08" 
+                                      Color="#1E293B"/>
                 </Border.Effect>
 
                 <StackPanel>
-                    <TextBlock Text="Générateur de Dictionnaire" FontSize="26" FontWeight="Bold" Foreground="#1E293B" HorizontalAlignment="Center"/>
-                    <TextBlock Text="Configurez vos paramètres de génération" FontSize="14" Foreground="#64748B" HorizontalAlignment="Center" Margin="0,5,0,25"/>
+                    <TextBlock Text="Générateur de Dictionnaire" 
+                               FontSize="24" 
+                               FontWeight="SemiBold" 
+                               Foreground="#0F172A" 
+                               HorizontalAlignment="Center"/>
+                    <TextBlock Text="Configurez vos paramètres de génération" 
+                               FontSize="13" 
+                               Foreground="#64748B" 
+                               HorizontalAlignment="Center" 
+                               Margin="0,6,0,25"/>
 
-                    <TextBlock Text="Longueur des mots de passe" FontWeight="Bold" Foreground="#334155" Margin="0,0,0,10" FontSize="14"/>
+                    <TextBlock Text="Longueur des mots de passe" 
+                               FontWeight="SemiBold" 
+                               Foreground="#1E293B" 
+                               Margin="0,0,0,10" 
+                               FontSize="14"/>
                     <Grid Margin="0,0,0,20">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -94,44 +126,87 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <StackPanel Grid.Column="0">
-                            <TextBlock Text="Minimum" Foreground="#94A3B8" FontSize="11" Margin="5,0,0,4"/>
-                            <TextBox x:Name="TxtMinLength" Style="{StaticResource ModernTextBox}" HorizontalContentAlignment="Center"/>
+                            <TextBlock Text="Minimum" 
+                                       Foreground="#94A3B8" 
+                                       FontSize="11" 
+                                       Margin="5,0,0,4"/>
+                            <TextBox x:Name="TxtMinLength" 
+                                     Style="{StaticResource ModernTextBox}" 
+                                     HorizontalContentAlignment="Center"/>
                         </StackPanel>
                         <StackPanel Grid.Column="2">
-                            <TextBlock Text="Maximum" Foreground="#94A3B8" FontSize="11" Margin="5,0,0,4"/>
-                            <TextBox x:Name="TxtMaxLength" Style="{StaticResource ModernTextBox}" HorizontalContentAlignment="Center"/>
+                            <TextBlock Text="Maximum" 
+                                       Foreground="#94A3B8" 
+                                       FontSize="11" 
+                                       Margin="5,0,0,4"/>
+                            <TextBox x:Name="TxtMaxLength" 
+                                     Style="{StaticResource ModernTextBox}" 
+                                     HorizontalContentAlignment="Center"/>
                         </StackPanel>
                     </Grid>
 
-                    <Separator Background="#F1F5F9" Margin="0,0,0,20"/>
+                    <Rectangle Height="1" Fill="#E2E8F0" Margin="0,0,0,20"/>
 
-                    <TextBlock Text="Jeux de caractères" FontWeight="Bold" Foreground="#334155" Margin="0,0,0,12" FontSize="14"/>
-                    <Border Background="#F8FAFC" CornerRadius="12" Padding="15" Margin="0,0,0,10">
+                    <TextBlock Text="Jeux de caractères" 
+                               FontWeight="SemiBold" 
+                               Foreground="#1E293B" 
+                               Margin="0,0,0,12" 
+                               FontSize="14"/>
+                    <Border Background="#F8FAFC" 
+                            CornerRadius="10" 
+                            Padding="15" 
+                            Margin="0,0,0,10"
+                            BorderBrush="#E2E8F0"
+                            BorderThickness="1">
                         <UniformGrid Columns="2">
-                            <CheckBox x:Name="ChkLower" Content="Minuscules (a-z)" IsChecked="True"/>
-                            <CheckBox x:Name="ChkUpper" Content="Majuscules (A-Z)"/>
-                            <CheckBox x:Name="ChkDigits" Content="Chiffres (0-9)"/>
-                            <CheckBox x:Name="ChkSpecial" Content="Spéciaux (# $ % @)"/>
+                            <CheckBox x:Name="ChkLower" Content="Minuscules (a-z)" IsChecked="True" Margin="0,4"/>
+                            <CheckBox x:Name="ChkUpper" Content="Majuscules (A-Z)" Margin="0,4"/>
+                            <CheckBox x:Name="ChkDigits" Content="Chiffres (0-9)" Margin="0,4"/>
+                            <CheckBox x:Name="ChkSpecial" Content="Spéciaux (# $ % @)" Margin="0,4"/>
                         </UniformGrid>
                     </Border>
 
-                    <TextBlock Text="Entrez les caractères personnalisés" Foreground="#64748B" FontSize="12" Margin="5,10,0,5"/>
-                    <TextBox x:Name="TxtCharacters" Style="{StaticResource ModernTextBox}" Margin="0,0,0,20"/>
+                    <TextBlock Text="Entrez les caractères personnalisés" 
+                               Foreground="#64748B" 
+                               FontSize="12" 
+                               Margin="5,10,0,5"/>
+                    <TextBox x:Name="TxtCharacters" 
+                             Style="{StaticResource ModernTextBox}" 
+                             Margin="0,0,0,20"/>
 
-                    <Separator Background="#F1F5F9" Margin="0,0,0,20"/>
+                    <Rectangle Height="1" Fill="#E2E8F0" Margin="0,0,0,20"/>
 
-                    <TextBlock Text="Destination du fichier" FontWeight="Bold" Foreground="#334155" Margin="0,0,0,12" FontSize="14"/>
+                    <TextBlock Text="Destination du fichier" 
+                               FontWeight="SemiBold" 
+                               Foreground="#1E293B" 
+                               Margin="0,0,0,12" 
+                               FontSize="14"/>
                     <Grid Margin="0,0,0,30">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                        <TextBox x:Name="TxtOutputPath" IsReadOnly="True" Style="{StaticResource ModernTextBox}" Foreground="#64748B" FontSize="12"/>
-                        <Button Grid.Column="1" x:Name="BtnBrowse" Content="Parcourir" Click="BtnBrowse_Click"
-                                Margin="10,0,0,0" Padding="15,0" Height="45" Background="#F1F5F9" BorderBrush="#E2E8F0" Foreground="#334155" Cursor="Hand">
+                        <TextBox x:Name="TxtOutputPath" 
+                                 IsReadOnly="True" 
+                                 Style="{StaticResource ModernTextBox}" 
+                                 Foreground="#64748B" 
+                                 FontSize="12"/>
+                        <Button Grid.Column="1" 
+                                x:Name="BtnBrowse" 
+                                Content="Parcourir" 
+                                Click="BtnBrowse_Click"
+                                Margin="10,0,0,0" 
+                                Padding="18,0" 
+                                Height="45" 
+                                Background="#F1F5F9" 
+                                BorderBrush="#CBD5E1" 
+                                BorderThickness="1"
+                                Foreground="#334155" 
+                                Cursor="Hand"
+                                FontWeight="Medium">
                             <Button.Resources>
                                 <Style TargetType="Border">
-                                    <Setter Property="CornerRadius" Value="10"/>
+                                    <Setter Property="CornerRadius" Value="8"/>
                                 </Style>
                             </Button.Resources>
                         </Button>
@@ -139,22 +214,44 @@
 
                     <StackPanel Margin="0,0,0,20">
                         <DockPanel LastChildFill="False">
-                            <TextBlock x:Name="LblStatus" Text="Prêt à générer" FontSize="12" Foreground="#64748B"/>
-                            <TextBlock x:Name="LblPercentage" Text="0%" FontWeight="Bold" Foreground="#2563EB" DockPanel.Dock="Right" Visibility="Hidden"/>
+                            <TextBlock x:Name="LblStatus" 
+                                       Text="Prêt à générer" 
+                                       FontSize="12" 
+                                       Foreground="#64748B"/>
+                            <TextBlock x:Name="LblPercentage" 
+                                       Text="0%" 
+                                       FontWeight="SemiBold" 
+                                       Foreground="#2563EB" 
+                                       DockPanel.Dock="Right" 
+                                       Visibility="Hidden"/>
                         </DockPanel>
-                        <ProgressBar x:Name="ProgressBarGen" Height="8" Margin="0,8,0,0" Foreground="{StaticResource PrimaryGradient}" Background="#F1F5F9" BorderThickness="0">
+                        <ProgressBar x:Name="ProgressBarGen" 
+                                     Height="6" 
+                                     Margin="0,8,0,0" 
+                                     Foreground="{StaticResource PrimaryGradient}" 
+                                     Background="#E2E8F0" 
+                                     BorderThickness="0">
                             <ProgressBar.Resources>
                                 <Style TargetType="Border">
-                                    <Setter Property="CornerRadius" Value="4"/>
+                                    <Setter Property="CornerRadius" Value="3"/>
                                 </Style>
                             </ProgressBar.Resources>
                         </ProgressBar>
                     </StackPanel>
 
-                    <Button x:Name="BtnGenerate" Content="LANCER LA GÉNÉRATION" Height="55" Click="BtnGenerate_Click"
-                            Style="{StaticResource ActionButtonStyle}" FontWeight="Bold" FontSize="15" Cursor="Hand">
+                    <Button x:Name="BtnGenerate" 
+                            Content="LANCER LA GÉNÉRATION" 
+                            Height="52" 
+                            Click="BtnGenerate_Click"
+                            Style="{StaticResource ActionButtonStyle}" 
+                            FontWeight="SemiBold" 
+                            FontSize="14" 
+                            Cursor="Hand">
                         <Button.Effect>
-                            <DropShadowEffect BlurRadius="15" ShadowDepth="4" Opacity="0.3" Color="#2563EB"/>
+                            <DropShadowEffect BlurRadius="12" 
+                                              ShadowDepth="2" 
+                                              Opacity="0.2" 
+                                              Color="#2563EB"/>
                         </Button.Effect>
                     </Button>
                 </StackPanel>
