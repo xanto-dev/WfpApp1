@@ -1,26 +1,43 @@
-# WpfApp1
-
-Il s'agit d'une application WPF construite avec .NET.
+# Lancer l'application WpfApp1
 
 ## Prérequis
 
-- SDK .NET 8.0
-- Visual Studio 2022 (avec la charge de travail de développement de bureau .NET)
+- Windows
+- .NET 8.0 SDK installé
 
-## Comment exécuter le projet
-
-Il y a deux façons d'exécuter ce projet : en utilisant Visual Studio ou la ligne de commande.
-
-### Utilisation de Visual Studio
-
-1.  Ouvrez le fichier `WpfApp1.sln` dans Visual Studio.
-2.  Appuyez sur `F5` ou cliquez sur le bouton "Démarrer" pour construire et exécuter le projet.
-
-### Utilisation de la ligne de commande
-
-1.  Ouvrez un terminal et naviguez jusqu'au répertoire `WpfApp1`.
-2.  Exécutez la commande suivante :
+Vérifier l'installation :
 
 ```bash
-dotnet run
+dotnet --version
 ```
+
+## Lancement rapide (CLI)
+
+Depuis la racine du projet (le dossier contenant `WpfApp1.sln`) :
+
+```bash
+dotnet restore
+dotnet run --project WpfApp1/WpfApp1.csproj
+```
+
+## Lancement avec Visual Studio
+
+1.  Ouvrir `WpfApp1.sln` avec Visual Studio.
+2.  Choisir la configuration **Debug**.
+3.  Définir `WpfApp1` comme projet de démarrage (clic-droit sur le projet > Définir comme projet de démarrage).
+4.  Lancer avec **F5** ou le bouton de démarrage.
+
+## Build pour la Release
+
+Pour créer une version "Release" de l'application :
+
+```bash
+dotnet build WpfApp1.sln -c Release
+```
+L'exécutable se trouvera dans `WpfApp1/bin/Release/net8.0-windows/`.
+
+## Problèmes fréquents
+
+-   **`dotnet` non reconnu :** Assurez-vous que le SDK .NET 8 est bien installé et que son chemin est ajouté à la variable d'environnement PATH de votre système. Redémarrez votre terminal après l'installation.
+-   **Erreur de restauration des paquets (NuGet) :** Exécutez `dotnet restore` à la racine du projet pour télécharger les dépendances.
+-   **Mauvaise version du SDK :** Si vous avez plusieurs versions du SDK .NET, assurez-vous que la version 8.0 est utilisée. Vous pouvez lister les SDK installés avec `dotnet --list-sdks`.
