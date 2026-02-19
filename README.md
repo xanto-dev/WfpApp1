@@ -3,6 +3,7 @@
 ## Prérequis
 
 - Windows
+- Visual Studio 2022 (avec la charge de travail de développement de bureau .NET)
 - .NET 8.0 SDK installé
 
 Vérifier l'installation :
@@ -26,15 +27,6 @@ dotnet run --project WpfApp1/WpfApp1.csproj
 2.  Choisir la configuration **Debug**.
 3.  Définir `WpfApp1` comme projet de démarrage (clic-droit sur le projet > Définir comme projet de démarrage).
 4.  Lancer avec **F5** ou le bouton de démarrage.
-
-## Build pour la Release
-
-Pour créer une version "Release" de l'application :
-
-```bash
-dotnet build WpfApp1.sln -c Release
-```
-L'exécutable se trouvera dans `WpfApp1/bin/Release/net8.0-windows/`.
 
 ## Problèmes fréquents
 
