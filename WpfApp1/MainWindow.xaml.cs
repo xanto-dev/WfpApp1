@@ -8,13 +8,16 @@ using System.Windows;
 
 namespace WpfApp1
 {
+    // Fenêtre principale de l'application.
     public partial class MainWindow : Window
     {
+        // Constructeur qui initialise les composants de la fenêtre.
         public MainWindow()
         {
             InitializeComponent();
         }
 
+        // Ouvre une boîte de dialogue pour choisir l'emplacement du fichier de sortie.
         private void BtnBrowse_Click(object sender, RoutedEventArgs e)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog
@@ -29,6 +32,7 @@ namespace WpfApp1
             }
         }
 
+        // Lance la génération du dictionnaire après avoir validé les entrées.
         private async void BtnGenerate_Click(object sender, RoutedEventArgs e)
         {
             
@@ -64,6 +68,8 @@ namespace WpfApp1
             BtnGenerate.IsEnabled = true;
             MessageBox.Show($"Le dictionnaire a été généré avec succès dans :\n{finalPath}", "Succès", MessageBoxButton.OK, MessageBoxImage.Information);
         }
+        
+        // Construit la chaîne de caractères à utiliser pour la génération.
         private string BuildCharset()
         {
             StringBuilder sb = new StringBuilder();
@@ -83,6 +89,7 @@ namespace WpfApp1
         }
 
         
+        // Calcule le nombre total de mots qui seront générés.
         private long CalculateTotal(int n, int min, int max)
         {
             long total = 0;
@@ -94,6 +101,7 @@ namespace WpfApp1
         }
 
        
+        // Démarre le processus d'écriture des mots générés dans le fichier.
         private void StartGeneration(string charset, int min, int max, string path, long total)
         {
             long count = 0;
@@ -106,6 +114,7 @@ namespace WpfApp1
             }
         }
 
+        // Génère récursivement toutes les combinaisons de mots et met à jour l'interface.
         private void GenerateRecursive(string current, string charset, int length, StreamWriter writer, ref long count, long total)
         {
             if (current.Length == length)
@@ -131,6 +140,7 @@ namespace WpfApp1
             }
         }
 
+        // Ces gestionnaires d'événements sont actuellement vides et non utilisés.
         private void ChkSpecial_Checked(object sender, RoutedEventArgs e)
         {
 
