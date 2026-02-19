@@ -1,4 +1,5 @@
-﻿<Window x:Class="WpfApp1.MainWindow"
+﻿<!-- Fenêtre principale de l'application -->
+<Window x:Class="WpfApp1.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Générateur de Dictionnaire"
@@ -12,12 +13,15 @@
         UseLayoutRounding="True"
         SnapsToDevicePixels="True">
 
+    <!-- Ressources et styles réutilisables pour l'interface -->
     <Window.Resources>
+        <!-- Dégradé de couleur bleu utilisé pour les éléments principaux -->
         <LinearGradientBrush x:Key="PrimaryGradient" StartPoint="0,0" EndPoint="1,1">
             <GradientStop Color="#2563EB" Offset="0"/>
             <GradientStop Color="#3B82F6" Offset="1"/>
         </LinearGradientBrush>
 
+        <!-- Style personnalisé pour les champs de texte (TextBox) -->
         <Style x:Key="ModernTextBox" TargetType="TextBox">
             <Setter Property="Padding" Value="12,0"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -47,6 +51,7 @@
             </Setter>
         </Style>
 
+        <!-- Style pour le bouton d'action principal -->
         <Style x:Key="ActionButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="{StaticResource PrimaryGradient}"/>
             <Setter Property="Foreground" Value="White"/>
@@ -73,10 +78,12 @@
         </Style>
     </Window.Resources>
 
+    <!-- Grille principale contenant tous les éléments -->
     <Grid>
      
-
+        <!-- Visionneuse à défilement pour s'assurer que tout le contenu est visible -->
         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+            <!-- Conteneur principal avec style de carte (ombre, coins arrondis) -->
             <Border Width="450" 
                     Margin="20,30" 
                     Background="White" 
@@ -91,18 +98,22 @@
                                       Color="#1E293B"/>
                 </Border.Effect>
 
+                <!-- Panneau vertical pour organiser les contrôles les uns sous les autres -->
                 <StackPanel>
+                    <!-- Titre principal de l'application -->
                     <TextBlock Text="Générateur de Dictionnaire" 
                                FontSize="24" 
                                FontWeight="SemiBold" 
                                Foreground="#0F172A" 
                                HorizontalAlignment="Center"/>
+                    <!-- Sous-titre descriptif -->
                     <TextBlock Text="Configurez vos paramètres de génération" 
                                FontSize="13" 
                                Foreground="#64748B" 
                                HorizontalAlignment="Center" 
                                Margin="0,6,0,25"/>
 
+                    <!-- Section pour définir la longueur des mots -->
                     <TextBlock Text="Longueur des mots de passe" 
                                FontWeight="SemiBold" 
                                Foreground="#1E293B" 
@@ -114,6 +125,7 @@
                             <ColumnDefinition Width="15"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
+                        <!-- Champ pour la longueur minimale -->
                         <StackPanel Grid.Column="0">
                             <TextBlock Text="Minimum" 
                                        Foreground="#94A3B8" 
@@ -123,6 +135,7 @@
                                      Style="{StaticResource ModernTextBox}" 
                                      HorizontalContentAlignment="Center"/>
                         </StackPanel>
+                        <!-- Champ pour la longueur maximale -->
                         <StackPanel Grid.Column="2">
                             <TextBlock Text="Maximum" 
                                        Foreground="#94A3B8" 
@@ -134,8 +147,10 @@
                         </StackPanel>
                     </Grid>
 
+                    <!-- Ligne de séparation visuelle -->
                     <Rectangle Height="1" Fill="#E2E8F0" Margin="0,0,0,20"/>
 
+                    <!-- Section pour sélectionner les jeux de caractères -->
                     <TextBlock Text="Jeux de caractères" 
                                FontWeight="SemiBold" 
                                Foreground="#1E293B" 
@@ -155,6 +170,7 @@
                         </UniformGrid>
                     </Border>
 
+                    <!-- Section pour les caractères personnalisés ajoutés par l'utilisateur -->
                     <TextBlock Text="Entrez les caractères personnalisés" 
                                Foreground="#64748B" 
                                FontSize="12" 
@@ -163,8 +179,10 @@
                              Style="{StaticResource ModernTextBox}" 
                              Margin="0,0,0,20"/>
 
+                    <!-- Ligne de séparation visuelle -->
                     <Rectangle Height="1" Fill="#E2E8F0" Margin="0,0,0,20"/>
 
+                    <!-- Section pour définir le fichier de sortie -->
                     <TextBlock Text="Destination du fichier" 
                                FontWeight="SemiBold" 
                                Foreground="#1E293B" 
@@ -175,11 +193,13 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
+                        <!-- Champ affichant le chemin du fichier (non modifiable) -->
                         <TextBox x:Name="TxtOutputPath" 
                                  IsReadOnly="True" 
                                  Style="{StaticResource ModernTextBox}" 
                                  Foreground="#64748B" 
                                  FontSize="12"/>
+                        <!-- Bouton pour ouvrir la boîte de dialogue de sauvegarde -->
                         <Button Grid.Column="1" 
                                 x:Name="BtnBrowse" 
                                 Content="Parcourir" 
@@ -201,12 +221,15 @@
                         </Button>
                     </Grid>
 
+                    <!-- Section pour afficher la progression de la génération -->
                     <StackPanel Margin="0,0,0,20">
                         <DockPanel LastChildFill="False">
+                            <!-- Texte indiquant l'état actuel (ex: "Génération en cours...") -->
                             <TextBlock x:Name="LblStatus" 
                                        Text="Prêt à générer" 
                                        FontSize="12" 
                                        Foreground="#64748B"/>
+                            <!-- Pourcentage de progression -->
                             <TextBlock x:Name="LblPercentage" 
                                        Text="0%" 
                                        FontWeight="SemiBold" 
@@ -214,6 +237,7 @@
                                        DockPanel.Dock="Right" 
                                        Visibility="Hidden"/>
                         </DockPanel>
+                        <!-- Barre de progression visuelle -->
                         <ProgressBar x:Name="ProgressBarGen" 
                                      Height="6" 
                                      Margin="0,8,0,0" 
@@ -228,6 +252,7 @@
                         </ProgressBar>
                     </StackPanel>
 
+                    <!-- Bouton principal pour lancer le processus de génération -->
                     <Button x:Name="BtnGenerate" 
                             Content="LANCER LA GÉNÉRATION" 
                             Height="52" 
